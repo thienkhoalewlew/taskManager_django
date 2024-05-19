@@ -6,19 +6,22 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/vapor/bootstrap.min.css">
-        <title></title>
+        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/morph/bootstrap.min.css">
+        <title>Task Manager | Update Task</title>
     </head>
-
+    {%  include 'profile/base.html' %}
     <body>
-        {%  include 'base.html' %}
+        <br>
+        <h3 class="text-center"> Update Task</h3>
+        <hr>
+
         <div class="container shadow-md p-5 form-layout">
-            <h3>Update task</h3>
-            <hr>
             <form method="POST" autocomplete="off">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <input class="btn btn-primary navbar-btn" type="submit" value="submit">
+                <a href="{% url 'view_tasks' %}">Go back</a>
+                <br>
+                <input class="btn btn-primary navbar-btn" type="submit" value="Update">
             </form>
         </div>
     </body>

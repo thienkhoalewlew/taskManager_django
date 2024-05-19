@@ -6,17 +6,21 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/vapor/bootstrap.min.css">
-        <title></title>
+        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/morph/bootstrap.min.css">
+        <title>Task Manager | Register</title>
     </head>
+    {%  include 'profile/pre-base.html' %}
     <body>
-        <div class="container shadow-md p-5 form-layout">
+        <div class="container bg-white shadow-md p-5 form-layout">
             <h3>Register</h3>
             <hr>
             <form method="POST" autocomplete="off">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <input class="btn btn-primary navbar-btn" type="submit" value="submit">
+                <input class="btn btn-primary navbar-btn" type="submit" value="Register">
+                <br> <br>
+                <p>Already have an account?  <a href="{% url 'my_login' %}">Login</a></p>
+                
             </form>
         </div>
     </body>
