@@ -1,0 +1,25 @@
+{% load static %}
+
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width-device-width, initial-scale-1, maximum-scale-1"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/vapor/bootstrap.min.css">
+        <title></title>
+    </head>
+    <div class="container shadow-md p-5 form-layout">
+        {%  include 'base.html' %}
+        
+        <h3> Dashboard</h3>
+        <hr>        
+        <a href="{% url 'create_task' %}">Create task</a>
+        <br>
+        
+        <a href="{% url 'view_tasks' %}">View all tasks</a>
+        <br>
+        
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+    <br>
+</html>
