@@ -21,7 +21,7 @@
                 <br>
                 <h6>Email: {{ user_form.email }}</h6>
                 <br> <br>
-                <input class="btn btn-primary navbar-btn" type="submit" value="Update Your Profile">
+                <input class="btn btn-primary navbar-btn" type="submit" value="Save Changes">
             </form>
         </div>
         <br>
@@ -29,7 +29,16 @@
         <div class="container bg-white shadow-md p-5 form-layout">
             <h2 class="text-center">Options</h2>
             <hr>
-            <a class="btn btn-primary navbar-btn" type="button" href="{% url 'delete_account' %}">Delete Your Account</a>
+            <form method="POST" autocomplete="off" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form2 }}
+                <br>
+                <button class="btn btn-primary navbar-btn" type="submit">Update Your Avatar</button>
+                <br>
+            </form>
+            <br> <br>
+            <br> <br>
+            <a class="btn btn-danger navbar-btn" type="button" href="{% url 'delete_account' %}">Delete Your Account</a>
         </div>
     </body>
 </html>
