@@ -7,22 +7,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/morph/bootstrap.min.css">
-        <title>Task Manager | Delete Task</title>
+        <title>Task Manager | Delete Account</title>
     </head>
     {%  include 'profile/base.html' %}
     <body>
         <br>
-        <h3 class="text-center"> Delete Task</h3>
+        <h3 class="text-center"> Delete Account</h3>
         <hr>
 
         <form method="POST" autocomplete="off">
             {% csrf_token %}
             <div class="container bg-white shadow-md p-5 form-layout">
-                <p>Are you sure that you want to delete this task?</p>
-    
-                 <a href="{% url 'view_tasks' %}">Go back</a>
+                <h5>Are you sure that you want to delete this account?</h5>
+                <br> <br>
     
                 <input class="btn btn-primary navbar-btn" type="submit" value="Delete">
+                <br> <br>
+                <a href="{% url 'profile' %}">Go back</a>
+                
             </div>
         </form>
     </body>
