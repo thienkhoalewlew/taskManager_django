@@ -4,5 +4,9 @@ h2{
 
 .form-layout{
     border-radius: 10px;
-    width: 300px;
+    width: 200px;
+}
+
+.message-text{
+    color: white;
 }

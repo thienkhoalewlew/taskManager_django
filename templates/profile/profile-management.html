@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/morph/bootstrap.min.css">
+        <title>Task Manager | Profile</title>
+    </head>
+    {%  include 'profile/base.html' %}
+    <body>
+        <br>
+        <div class="container bg-white shadow-md p-5 form-layout">
+            <h3 class="text-center"> Update Profile</h3>
+            <hr>
+            <form method="POST" autocomplete="off">
+                {% csrf_token %}
+                <h6>Username: {{ user_form.username }}</h6>
+                <br>
+                <h6>Email: {{ user_form.email }}</h6>
+                <br> <br>
+                <input class="btn btn-primary navbar-btn" type="submit" value="Save Changes">
+            </form>
+        </div>
+        <br>
+
+        <div class="container bg-white shadow-md p-5 form-layout">
+            <h2 class="text-center">Options</h2>
+            <hr>
+            <form method="POST" autocomplete="off" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form2 }}
+                <br>
+                <button class="btn btn-primary navbar-btn" type="submit">Update Your Avatar</button>
+                <br>
+            </form>
+            <br> <br>
+            <br> <br>
+            <a class="btn btn-danger navbar-btn" type="button" href="{% url 'delete_account' %}">Delete Your Account</a>
+        </div>
+    </body>
+</html>

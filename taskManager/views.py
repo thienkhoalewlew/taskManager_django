@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 
-from .forms import CreateUserForm, LoginForm, CreateTaskForm
+from .forms import CreateUserForm, LoginForm, CreateTaskForm, UpdateUserForm, UpdateProfileForm
 
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login
 
 from django.contrib.auth.decorators import login_required
 
-from .models import Task
+from .models import Task,User,Profile
+
+from django.contrib import messages
 
 # Create your views here.
 def home(request):
@@ -22,7 +23,13 @@ def register(request):
         form = CreateUserForm(request.POST)
 
         if form.is_valid():
+            current_user = form.save(commit=False)
+
             form.save()
+
+            profile = Profile.objects.create(user=current_user)
+
+            messages.success(request, "Account was created for " + form.cleaned_data['username'])
 
             return redirect('my_login')
     context = {'form': form}
@@ -50,7 +57,10 @@ def my_login(request):
 
 @login_required(login_url='my_login')
 def dashboard(request):
-    return render(request, 'profile/dashboard.html')
+    profile_pic = Profile.objects.get(user=request.user)
+    context = {'profile': profile_pic}
+
+    return render(request, 'profile/dashboard.html', context=context)
 
 @login_required(login_url='my_login')
 def createTask(request):
@@ -97,6 +107,41 @@ def deleteTask(request, pk):
         return redirect('view_tasks')
 
     return render(request, 'profile/delete_task.html')
+
+@login_required(login_url='my_login')
+def profile(request):
+    user_form = UpdateUserForm(instance=request.user)
+    profile = Profile.objects.get(user=request.user)
+
+    form2 = UpdateProfileForm(instance=profile)
+
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+
+        form2 = UpdateProfileForm(request.POST, request.FILES, instance=profile)
+
+        if user_form.is_valid():
+            user_form.save()
+
+            return redirect('dashboard')
+
+        if form2.is_valid():
+            form2.save()
+
+            return redirect('dashboard')
+
+    context = {'user_form': user_form, 'form2': form2}
+    return render(request, 'profile/profile-management.html', context=context)
+
+@login_required(login_url='my_login')
+def deleteAccount(request):
+    if request.method == 'POST':
+        delete_user = User.objects.get(username=request.user)
+        delete_user.delete()
+
+        return redirect('')
+
+    return render(request, 'profile/delete-account.html')
 
 def logout(request):
     auth.logout(request)
