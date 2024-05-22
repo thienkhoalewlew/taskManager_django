@@ -1,24 +1,29 @@
 {% load static %}
 
 <html>
-    <head>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width-device-width, initial-scale-1, maximum-scale-1"/>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/morph/bootstrap.min.css">
-        <title>Task Manager | Dashboard</title>
-    </head>
-    {%  include 'profile/base.html' %}
-    <body>
-        <div class="container bg-white shadow-md p-5 form-layout">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width-device-width, initial-scale-1, maximum-scale-1"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/morph/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Task Manager | Dashboard</title>
+</head>
+{% include 'profile/base.html' %}
+<body>
+<div class="centered-form">
+    <div class="container bg-white shadow-md p-5 form-layout" style="width: 800px">
+        <div class="text-center">
             <br>
-            <h3 class="text-center"> Task Manager</h3>
+            <h3>Task Manager</h3>
             <hr>
-            <img src="{{ profile.profile_pic.url }}" style="width: 200px"/>
+            <img src="{{ profile.profile_pic.url }}" style="width: 200px; border-radius: 50%; object-fit: cover;"/>
             <br> <br>
             <h4>Welcome to your personal task manager application!</h4>
             <br>
-            <a href="{% url 'profile' %}">Profile Management</a>
+            <button class="btn btn-register" onclick="location.href='{% url 'profile' %}'"><i class="fa-solid fa-pen-to-square"></i>     Profile Management</button>
         </div>
-    </body>
+    </div>
+</div>
+</body>
 </html>

@@ -4,9 +4,107 @@ h2{
 
 .form-layout{
     border-radius: 10px;
-    width: 200px;
+    width: 100px;
 }
 
 .message-text{
     color: white;
 }
+.navbar-brand.main-heading {
+    font-weight: bold;
+    font-size: 2rem;
+    color: #007bff;
+    transition: color 0.3s ease,
+    transform 0.3s ease;
+}
+.navbar-brand:hover,
+.navbar-brand:active {
+    color: #0056b3;
+    transform: scale(1.05);
+}
+.btn.btn-login {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    color: black;
+    transition: background-color 0.3s ease;
+    transform 0.3s ease;
+}
+.btn.btn-login:hover {
+    background-color: #e0e0e0;
+    color: #333;
+    transform: translateY(-2px);
+}
+.btn.btn-register,
+.form-layout input[type="submit"] {
+    background-color: #dc3545;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    color: #fff;
+    transition: background-color 0.3s ease,
+    transform 0.3s ease;
+}
+.btn.btn-register:hover,
+.btn.btn-register:active,
+.form-layout input[type="submit"]:hover {
+    background-color: #c82333;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.hero {
+    background-image: url('../../static/images/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 90vh;
+    padding: 7rem 0;
+}
+.hero-overlay {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 5rem 0;
+}
+.hero-overlay h1,
+.hero-overlay p {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+.form-layout label,
+.form-layout input[type="text"],
+.form-layout input[type="email"],
+.form-layout input[type="password"] {
+    display: inline-block;
+    margin-right: 50px;
+}
+
+.form-layout label {
+    width: 200px;
+}
+.form-layout input[type="text"],
+.form-layout input[type="email"],
+.form-layout input[type="password"] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    width: 350px
+}
+.form-layout input[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    width: 150px
+}
+.errorlist {
+    color: red;
+}
+.centered-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+
+
+
