@@ -21,9 +21,13 @@ class LoginForm(AuthenticationForm):
     password = forms.CharField(widget=PasswordInput())
 
 class CreateTaskForm(forms.ModelForm):
+    deadline = forms.DateTimeField(
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        required=False
+    )
     class Meta:
         model = Task
-        fields = ['title', 'content']
+        fields = ['title', 'content', 'deadline']
         exclude = ['user']
 
 class UpdateUserForm(forms.ModelForm):

@@ -11,6 +11,9 @@ from .models import Task,User,Profile
 
 from django.contrib import messages
 
+from django.utils import timezone
+from datetime import timedelta
+
 # Create your views here.
 def home(request):
 
@@ -81,9 +84,23 @@ def createTask(request):
 @login_required(login_url='my_login')
 def viewTasks(request):
     current_user = request.user.id
-    task = Task.objects.all().filter(user=current_user)
-    context = {'task': task}
-
+    tasks = Task.objects.filter(user=current_user)
+    
+    now = timezone.now()
+    
+    for task in tasks:
+        if task.deadline:
+            time_left = task.deadline - now
+            if time_left.total_seconds() > 0:
+                days = time_left.days
+                hours = time_left.seconds // 3600
+                task.time_remaining = f"{days} day{'s' if days != 1 else ''} {hours} hour{'s' if hours != 1 else ''} left"
+            else:
+                task.time_remaining = "Overdue"
+        else:
+            task.time_remaining = "No deadline set"
+    
+    context = {'tasks': tasks}
     return render(request, 'profile/view_tasks.html', context=context)
 
 @login_required(login_url='my_login')
